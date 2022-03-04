@@ -12,7 +12,7 @@ const Tutorial = sequelize.define('tutorial', {
     publishedStatus: { type: Sequelize.STRING, allowNull: false },
     videoUrl: { type: Sequelize.STRING },
     description: { type: Sequelize.STRING },
-    isDeleted : { type: Sequelize.STRING, defaultValue: false },
+    isDeleted : { type: Sequelize.BOOLEAN, defaultValue: false },
     deletedAt: { type: Sequelize.DATE }
 });
 
