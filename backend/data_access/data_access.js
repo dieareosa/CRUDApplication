@@ -9,7 +9,7 @@ const sequelize = new Sequelize(process.env.MYSQLDB_DATABASE, process.env.MYSQLD
 
 const Tutorial = sequelize.define('tutorial', {
     title: { type: Sequelize.STRING, allowNull: false },
-    publishedStatus: { type: Sequelize.STRING, allowNull: false },
+    isPublic: { type: Sequelize.BOOLEAN, allowNull: false },
     videoUrl: { type: Sequelize.STRING },
     description: { type: Sequelize.STRING },
     isDeleted : { type: Sequelize.BOOLEAN, defaultValue: false },

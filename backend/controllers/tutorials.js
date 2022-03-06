@@ -3,8 +3,10 @@ const asyncMiddleware = require('../middlewares/async');
 const JSONResponse = require('../utils/custom_response');
 const { isValidAddTutorialRequest, isValidIdRequest, isValidGetTutorialsRequest, isValidUpdateTutorialRequest } = require('../validators/tutorials');
 const { createTutorialDB, getTutorialDB, getTutorialsDB, deleteTutorialDB, updateTutorialDB, deleteTutorialsDB } = require('../data_access/tutorials')
+const { verifyToken } = require('../lib/token_generator');
 
 const addTutorial = asyncMiddleware(async (req, res) => {
+    await verifyToken(req, res);
     const tutorial = req.body;
 
     const { successful, message } = isValidAddTutorialRequest(tutorial);
