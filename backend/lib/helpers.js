@@ -1,16 +1,16 @@
 const _ = require('lodash');
-const { TYPES } = require('../lib/types');
+const {TYPES} = require('../lib/types');
 
 function isValidHttpUrl(string) {
     let url;
 
     try {
-      url = new URL(string);
+        url = new URL(string);
     } catch (_) {
-      return false;  
+        return false;
     }
-  
-    return url.protocol === "http:" || url.protocol === "https:";
+
+    return url.protocol === 'http:' || url.protocol === 'https:';
 }
 
 const isValidType = (value, type) => {
@@ -29,7 +29,7 @@ const isValidType = (value, type) => {
 const isNullish = (value) => value === undefined || value === null;
 
 const isValidSchema = (test, expect) => {
-    const { isValid, errors } = validateSchema(test, expect);
+    const {isValid, errors} = validateSchema(test, expect);
 
     return {
         successful: isValid,
@@ -38,17 +38,17 @@ const isValidSchema = (test, expect) => {
 };
 
 const validateSchema = (payload, schema) => {
-    const result = { isValid: true, errors: [] };
+    const result = {isValid: true, errors: []};
 
     const payloadKeys = Object.keys(payload);
     const schemaKeys = Object.keys(schema);
 
     const keysValidation = validateKeys(payloadKeys, schemaKeys, schema);
-    if (!keysValidation.isValid) return { isValid: false, errors: keysValidation.errors };
+    if (!keysValidation.isValid) return {isValid: false, errors: keysValidation.errors};
 
     schemaKeys.forEach(key => {
         const value = payload[key];
-        const { type, required } = schema[key];
+        const {type, required} = schema[key];
 
         if (!required && isNullish(value)) return;
 
@@ -62,7 +62,7 @@ const validateSchema = (payload, schema) => {
 };
 
 const validateKeys = (payloadKeys, schemaKeys, schema) => {
-    const result = { isValid: true, errors: [] };
+    const result = {isValid: true, errors: []};
 
     const requiredKeys = schemaKeys.filter(key => !!schema[key].required);
     const missingValues = _.differenceWith(requiredKeys, payloadKeys);
@@ -77,4 +77,4 @@ const validateKeys = (payloadKeys, schemaKeys, schema) => {
     return result;
 };
 
-module.exports = { isValidSchema }; 
+module.exports = {isValidSchema};

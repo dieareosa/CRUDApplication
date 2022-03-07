@@ -1,7 +1,6 @@
-
 const express = require('express');
 
-const { addTutorial, getTutorial, getTutorials, deleteTutorial, updateTutorial, deleteTutorials } = require('../controllers/tutorials');
+const {addTutorial, getTutorial, getTutorials, deleteTutorial, updateTutorial, deleteTutorials} = require('../controllers/tutorials');
 const router = express.Router();
 
 router.route('/').post(addTutorial);
@@ -15,7 +14,6 @@ router.route('/:id').put(updateTutorial);
 router.route('/mass_delete').delete(deleteTutorials);
 
 router.route('/:id').delete(deleteTutorial);
-
 
 
 module.exports = router;

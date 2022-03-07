@@ -3,9 +3,9 @@
     <div class="list">
       <ul>
         <ui-item
-          @click="setCurrentTutorial(tutorial)"
-          v-for="tutorial in tutorials"
-          :key="tutorial.id"
+            @click="setCurrentTutorial(tutorial)"
+            v-for="tutorial in tutorials"
+            :key="tutorial.id"
         >
           <ui-item-text-content>{{ tutorial.title }}</ui-item-text-content>
         </ui-item>
@@ -15,7 +15,7 @@
       <TutorialDetails :showTutorialForm="showTutorialForm" :tutorial="currentTutorial">
         <template v-slot:title>{{ currentTutorial.title }}</template>
         <template v-slot:description>{{ currentTutorial.description }}</template>
-		<template v-slot:videoURL>{{ currentTutorial.videoURL }}</template>
+        <template v-slot:videoURL>{{ currentTutorial.videoURL }}</template>
         <template v-slot:state>{{ currentTutorial.isPublic ? 'Publico' : 'Oculto' }}</template>
       </TutorialDetails>
     </div>
@@ -37,9 +37,10 @@
   </div>
 </template>
 <script>
-import { ref, toRefs } from "vue";
-import TutorialDetails from "./TutorialDetails.vue";
-import TutorialForm from "./TutorialForm.vue";
+import {ref, toRefs} from 'vue';
+import TutorialDetails from './TutorialDetails.vue';
+import TutorialForm from './TutorialForm.vue';
+
 export default {
   components: {
     TutorialDetails,
@@ -53,8 +54,8 @@ export default {
   },
 
   setup(props) {
-    const { tutorials, query } = toRefs(props);
-    const { getAllTutorials } = props;
+    const {tutorials, query} = toRefs(props);
+    const {getAllTutorials} = props;
     const currentTutorial = ref(null);
     const tutorialFormVisible = ref(false);
 
@@ -116,9 +117,10 @@ li {
 li:nth-last-of-type(1) {
   border-bottom: none;
 }
+
 .empty-list {
-	display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 </style>

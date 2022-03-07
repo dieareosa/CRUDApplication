@@ -1,3 +1,3 @@
-const JSONResponse = (message) => ({ result: message });
+const JSONResponse = (message) => ({result: message});
 
 module.exports = JSONResponse;

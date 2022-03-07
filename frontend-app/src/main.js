@@ -1,4 +1,4 @@
-import { createApp } from 'vue';
+import {createApp} from 'vue';
 import App from './App.vue';
 
 import BalmUI from 'balm-ui'; // Official Google Material Components

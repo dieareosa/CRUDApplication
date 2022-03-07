@@ -1,10 +1,10 @@
 <template>
   <div class='tutorial-form'>
     <div class='form-header'>
-        <slot></slot>
-        <div v-if="tutorialId">
-            <ui-button @click="remove(tutorialId)" icon="delete"></ui-button>
-        </div>
+      <slot></slot>
+      <div v-if="tutorialId">
+        <ui-button @click="remove(tutorialId)" icon="delete"></ui-button>
+      </div>
     </div>
     <ui-divider></ui-divider>
     <ui-form type="|" item-margin-bottom="16]" action-align="center">
@@ -25,9 +25,9 @@
           <label>Como quieres mantener el tutorial?</label>
 
           <ui-form-field>
-            <ui-radio v-model="isPublic" v-bind:value="false"></ui-radio>
+            <ui-radio v-model="isPublic" v-bind:value=false></ui-radio>
             <label>Oculto</label>
-            <ui-radio v-model="isPublic" v-bind:value="true"></ui-radio>
+            <ui-radio v-model="isPublic" v-bind:value=true></ui-radio>
             <label>Publico</label>
           </ui-form-field>
         </ui-form-field>
@@ -42,9 +42,10 @@
 
 
 <script>
-import { ref, toRefs } from "vue";
-import TutorialService from "../services/TutorialService";
-import Validators from "../lib/Validators"
+import {ref, toRefs} from 'vue';
+import TutorialService from '../services/TutorialService';
+import Validators from '../lib/Validators';
+
 export default {
   props: {
     getAllTutorials: Function,
@@ -53,8 +54,8 @@ export default {
   },
 
   setup(props) {
-    const { tutorial } = toRefs(props);
-    const { getAllTutorials, showTutorialForm } = props;
+    const {tutorial} = toRefs(props);
+    const {getAllTutorials, showTutorialForm} = props;
     const tutorialId = ref(tutorial?.value?.id ?? null);
     const title = ref(tutorial?.value?.title ?? null);
     const videoUrl = ref(tutorial?.value?.videoUrl ?? null);
@@ -62,13 +63,13 @@ export default {
     const isPublic = ref(tutorial?.value?.id ? tutorial.value?.isPublic : true);
 
     const submit = async () => {
-      if (!title.value) return alert("Titulo no ingresado.");
+      if (!title.value) return alert('Titulo no ingresado.');
 
       if (!!videoUrl.value) {
-        if (!Validators.isValidHttpUrl(videoUrl.value)){
-            return alert("Formato de URL incorrecto.");
+        if (!Validators.isValidHttpUrl(videoUrl.value)) {
+          return alert('Formato de URL incorrecto.');
         }
-      } 
+      }
 
       if (tutorial.value?.id) {
         await TutorialService.updateTutorial(tutorialId.value, {
@@ -110,12 +111,13 @@ export default {
 </script>
 
 <style>
- .tutorial-form{
-     justify-content: flex-start;
-     width: 25%;
- }
- .form-header {
-     display: flex;
-    justify-content: space-between;
- }
+.tutorial-form {
+  justify-content: flex-start;
+  width: 25%;
+}
+
+.form-header {
+  display: flex;
+  justify-content: space-between;
+}
 </style>

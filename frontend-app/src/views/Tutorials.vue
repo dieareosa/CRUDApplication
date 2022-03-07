@@ -3,30 +3,31 @@
     <h1>Tutoriales</h1>
     <div class="search">
       <div class="search-box">
-        <ui-textfield class="search-bar" placeholder="Buscar por titulo o descripcion" v-model="query" outlined />
+        <ui-textfield class="search-bar" placeholder="Buscar por titulo o descripcion" v-model="query" outlined/>
         <ui-button @click="getAllTutorials(query)" raised>Buscar</ui-button>
       </div>
-      <br />
-      <div >
+      <br/>
+      <div>
         <ui-button @click="resetSearch">Limpiar busqueda</ui-button>
-        <ui-button @click="showTutorialForm(true)"  raised>Crear</ui-button>
+        <ui-button @click="showTutorialForm(true)" raised>Crear</ui-button>
       </div>
     </div>
     <div v-if="!tutorialFormVisible">
       <tutorial-list
-        :query="query"
-        :tutorials="tutorials"
-        :getAllTutorials="getAllTutorials"
-        :showTutorialForm="showTutorialForm"
-        :tutorialFormVisible="tutorialFormVisible"
+          :query="query"
+          :tutorials="tutorials"
+          :getAllTutorials="getAllTutorials"
+          :showTutorialForm="showTutorialForm"
+          :tutorialFormVisible="tutorialFormVisible"
       >
-        <template v-slot:empty-search><h2> <a v-button @click="resetSearch()">Mostrar todos</a></h2> </template>
-        <template v-slot:empty-tutorials> <h2>Comencemos por <a v-button @click="showTutorialForm(true)">agregar</a> uno</h2> </template>
-        <template v-slot:default="slotProps"> 
+        <template v-slot:empty-search><h2><a v-button @click="resetSearch()">Mostrar todos</a></h2></template>
+        <template v-slot:empty-tutorials><h2>Comencemos por <a v-button @click="showTutorialForm(true)">agregar</a> uno
+        </h2></template>
+        <template v-slot:default="slotProps">
           <TutorialForm
-            :tutorial="slotProps.currentTutorial"
-            :getAllTutorials="getAllTutorials"
-            :showTutorialForm="slotProps.showTutorialForm"
+              :tutorial="slotProps.currentTutorial"
+              :getAllTutorials="getAllTutorials"
+              :showTutorialForm="slotProps.showTutorialForm"
           >Editar tutorial
           </TutorialForm>
         </template>
@@ -34,9 +35,10 @@
     </div>
     <div v-else>
       <tutorial-form
-        :getAllTutorials="getAllTutorials"
-        :showTutorialForm="showTutorialForm"
-      >Crear tutorial</tutorial-form>
+          :getAllTutorials="getAllTutorials"
+          :showTutorialForm="showTutorialForm"
+      >Crear tutorial
+      </tutorial-form>
     </div>
 
     <ui-button v-if='tutorials.length > 0 && !tutorialFormVisible' @click="removeAll">Eliminar todos</ui-button>
@@ -44,10 +46,10 @@
 </template>
 
 <script>
-import { ref, reactive, computed } from "vue";
-import TutorialList from "../components/TutorialList.vue";
-import TutorialForm from "../components/TutorialForm.vue";
-import TutorialService from "../services/TutorialService";
+import {ref, reactive, computed} from 'vue';
+import TutorialList from '../components/TutorialList.vue';
+import TutorialForm from '../components/TutorialForm.vue';
+import TutorialService from '../services/TutorialService';
 
 export default {
   components: {
@@ -55,11 +57,11 @@ export default {
     TutorialForm
   },
   setup() {
-    const query = ref("");
+    const query = ref('');
     const tutorials = ref([]);
     const tutorialFormVisible = ref(false);
     const resetSearch = async () => {
-      query.value = "";
+      query.value = '';
       await getAllTutorials();
     };
 
@@ -83,8 +85,7 @@ export default {
       tutorials,
       tutorialFormVisible,
       removeAll,
-      showTutorialForm,
-      tutorialFormVisible
+      showTutorialForm
     };
   },
   created() {
@@ -98,12 +99,14 @@ export default {
   width: 1000px;
   text-align: left;
 }
+
 .search {
   margin-bottom: 20px;
 }
+
 .search-bar {
   width: 70%;
-   margin-right: 15px;
+  margin-right: 15px;
 }
 
 .search-box {
