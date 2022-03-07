@@ -1,6 +1,17 @@
 const _ = require('lodash');
-const luxon = require('luxon');
 const { TYPES } = require('../lib/types');
+
+function isValidHttpUrl(string) {
+    let url;
+
+    try {
+      url = new URL(string);
+    } catch (_) {
+      return false;  
+    }
+  
+    return url.protocol === "http:" || url.protocol === "https:";
+}
 
 const isValidType = (value, type) => {
     switch (type) {
@@ -8,8 +19,8 @@ const isValidType = (value, type) => {
             return _.isString(value);
         case TYPES.BOOLEAN:
             return _.isBoolean(value);
-        case TYPES.DATE:
-            return _.isString(value) && luxon.DateTime.fromISO(value).isValid;
+        case TYPES.URL:
+            return isValidHttpUrl(value);
         default:
             return false;
     }
