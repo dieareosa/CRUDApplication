@@ -3,13 +3,13 @@
     <h1>Tutoriales</h1>
     <div class="search">
       <div class="search-box">
-        <ui-textfield class="search-bar" placeholder="Buscador" v-model="query" outlined />
+        <ui-textfield class="search-bar" placeholder="Buscar por titulo o descripcion" v-model="query" outlined />
         <ui-button @click="getAllTutorials(query)" raised>Buscar</ui-button>
       </div>
       <br />
       <div >
         <ui-button @click="resetSearch">Limpiar busqueda</ui-button>
-        <ui-button @click="showTutorialForm(true)" raised>Crear</ui-button>
+        <ui-button @click="showTutorialForm(true)"  raised>Crear</ui-button>
       </div>
     </div>
     <div v-if="!tutorialFormVisible">
