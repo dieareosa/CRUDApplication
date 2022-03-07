@@ -25,12 +25,4 @@ const isValidUpdateTutorialRequest = (id, tutorial) => {
     return { successful: true };
 };
 
-const isValidGetTutorialsRequest = (tutorial) => {
-    const { successful: validSchema, message: schemaMessage } = isValidSchema(tutorial, GET_TUTORIALS);
-
-    if (!validSchema) return { successful: false, message: schemaMessage };
-
-    return { successful: true };
-};
-
-module.exports = { isValidAddTutorialRequest, isValidIdRequest, isValidUpdateTutorialRequest, isValidGetTutorialsRequest }
+module.exports = { isValidAddTutorialRequest, isValidIdRequest, isValidUpdateTutorialRequest }

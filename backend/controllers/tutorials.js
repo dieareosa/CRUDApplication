@@ -29,13 +29,9 @@ const getTutorial = asyncMiddleware(async (req, res) => {
 });
 
 const getTutorials = asyncMiddleware(async (req, res) => {
-    const filters = req.query;
+    const { filter } = req.query;
 
-    const { successful, message } = isValidGetTutorialsRequest(filters);
-
-    if (!successful) return res.status(400).json(JSONResponse(message));
-
-    const tutorialResponse = await getTutorialsDB(filters)
+    const tutorialResponse = await getTutorialsDB(filter)
     return res.json(JSONResponse(tutorialResponse));
 });
 
